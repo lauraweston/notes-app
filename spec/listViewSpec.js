@@ -1,5 +1,12 @@
 (function () {
     window.addEventListener("load", function () {
+        it("should not display a given empty list in the browser", function () {
+            var list = new List();
+            var view = new ListView(list);
+            view.displayList();
+            var displayList = document.getElementById("list");
+            expect(displayList.innerText).toBeUndefined();
+        });
         it("should display a given list in the browser", function () {
             var list = new List();
             list.newNote("My first note")
