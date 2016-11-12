@@ -1,17 +1,17 @@
 (function (exports) {
-    var Note = function (text) {
+    var NoteModel = function (text) {
         this.text = text;
     }
 
-    Note.prototype.fullText = function () {
+    NoteModel.prototype.fullText = function () {
         return this.text;
     }
 
-    Note.prototype.truncateText = function () {
+    NoteModel.prototype.truncateText = function () {
         return this.text.length > 20 ?
             this.text.slice(0, 20) + "&hellip;" : this.text;
     }
     
-    exports.Note = Note;
+    exports.NoteModel = NoteModel;
 })(this);
 
