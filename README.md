@@ -22,12 +22,12 @@ So I can see all the information in the note
 ```
 Installation
 ------------
-```git clone <github repo>```
-```npm install```
+- ```git clone <github repo>```
+- ```npm install```
 
 Usage
 -----
-- From command line, run: ```node node_modules/.bin/http-server```
+- From command line, run: ```npm run server```
 - In browser, go to: ```http://localhost:8080/```
 
 Testing
