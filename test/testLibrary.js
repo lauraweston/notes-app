@@ -22,6 +22,11 @@ var expect = function (actualValue) {
             if (!actualValue.includes(expectedValue)) {
                 throw new Error("Expected " + actualValue + " to include " + expectedValue);
             }
+        },
+        toBeUndefined: function () {
+            if (actualValue !== undefined) {
+                throw new Error("Expected " + actualValue + " to be undefined");
+            }
         }
     };
 };
