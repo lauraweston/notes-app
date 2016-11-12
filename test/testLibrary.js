@@ -26,9 +26,17 @@ var expect = function (actualValue) {
     };
 };
 
+var before;
+var beforeEach = function (callback) {
+    before = callback;
+};
+
 var it = function (description, callback) {
     console.log(description);
     try {
+        if (typeof before === "function") {
+            before();
+        }
         callback();
         console.log("Passed");
         passing++;
@@ -38,3 +46,5 @@ var it = function (description, callback) {
     }
     console.log(passing + " passing", failing + " failing");
 };
+
+
