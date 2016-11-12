@@ -8,14 +8,19 @@ var expect = function (actualValue) {
                 throw new Error("Expected " + actualValue + " to equal " + expectedValue);
             }
         },
-        toBeTrue: function (actualValue) {
+        toBeTrue: function () {
             if (!actualValue) {
                 throw new Error("Expected " + actualValue + " to be true");
             }
         },
-        toBeFalse: function (actualValue) {
+        toBeFalse: function () {
             if (actualValue) {
                 throw new Error("Expected " + actualValue + " to be false");
+            }
+        },
+        toInclude: function (expectedValue) {
+            if (!actualValue.includes(expectedValue)) {
+                throw new Error("Expected " + actualValue + " to include " + expectedValue);
             }
         }
     };
