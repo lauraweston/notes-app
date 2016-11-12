@@ -1,5 +1,5 @@
-var ListView = function (list) {
-    this.list = list;
+var ListView = function (listModel) {
+    this.listModel = listModel;
 };
 
 ListView.prototype.displayList = function () {
@@ -8,18 +8,16 @@ ListView.prototype.displayList = function () {
 };
 
 ListView.prototype.createListItems = function () {
-    var items = [];
-    this.list.allNotes().forEach(function (note) {
+    return this.listModel.allNotes().map(function (note) {
         var item = document.createElement("li");
-        item.innerText = note.truncateText();
-        items.push(item);
+        item.innerHTML = note.truncateText();
+        return item;
     });
-    return items;
 };
 
 ListView.prototype.appendItemsToList = function (items) {
-    var l = document.getElementById("list");
+    var list = document.getElementById("list");
     items.forEach(function (item) {
-        l.appendChild(item);
+        list.appendChild(item);
     });
 };
