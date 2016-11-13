@@ -15,11 +15,11 @@
     };
 
     var ListView = function (listModel) {
-        this.listModel = listModel;
+        this.model = listModel;
     };
 
     ListView.prototype.render = function () {
-        var items = createListItems(this.listModel);
+        var items = createListItems(this.model);
         appendItemsToList(items);
     };
 
