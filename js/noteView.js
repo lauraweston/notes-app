@@ -10,7 +10,7 @@
         this.noteModel = noteModel;
     };
 
-    NoteView.prototype.displayNote = function () {
+    NoteView.prototype.render = function () {
         var note = createNote(this.noteModel);
         var noteElement = document.getElementById("note");
         noteElement.appendChild(note);

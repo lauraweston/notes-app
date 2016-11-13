@@ -5,15 +5,31 @@
             this.render = function () { this.renderCalled = true; };
             this.renderCalled = false;
         };
+        var NoteViewDouble = function (noteModel) {
+            this.noteModel = noteModel;
+            this.render = function () { this.renderCalled = true; };
+            this.renderCalled = false;
+        };
+        var listModel;
+        var controller;
+        beforeEach(function () {
+            listModel = new ListModel();
+            listModel.newNote("Stuff to do");
+            controller = new Controller(listModel, ListViewDouble, NoteViewDouble);
+        });
 
         it("displays a list in the browser from the Controller", function () {
-            var listModel = new ListModel();
-            var controller = new Controller(listModel, ListViewDouble);
             controller.showList();
 
             expect(controller.renderedView.constructor).toEqual(ListViewDouble);
             expect(controller.renderedView.listModel).toEqual(listModel);
             expect(controller.renderedView.renderCalled).toBeTrue();
+        });
+        it("displays a note in the browser from the Controller", function () {
+            controller.showNote();
+
+            expect(controller.renderedView.constructor).toEqual(NoteViewDouble);
+            expect(controller.renderedView.noteModel).toEqual(listModel.notes[0]);
         });
     });
 })();

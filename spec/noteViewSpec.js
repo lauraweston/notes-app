@@ -14,7 +14,7 @@
             var noteModel = new NoteModel("Stuff to do: thing 1, thing 2, thing 3, thing 4");
             var noteView = new NoteView(noteModel);
 
-            noteView.displayNote();
+            noteView.render();
 
             expect(noteElement.children.length).toEqual(1);
             expect(noteElement.innerHTML).toEqual("<p>Stuff to do: thing 1, thing 2, thing 3, thing 4</p>");
