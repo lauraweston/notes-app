@@ -1,5 +1,4 @@
 (function (exports) {
-
     var createListItems = function (listModel) {
         return listModel.allNotes().map(function (note) {
             var item = document.createElement("li");
