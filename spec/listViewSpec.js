@@ -29,12 +29,32 @@
             expect(listElement.children[1].outerHTML).toEqual("<li>My second note</li>");
             expect(listElement.children[2].outerHTML).toEqual("<li>My third note</li>");
         });
-        
+
         it("should not display a given empty list in the browser", function () {
             var listView = new ListView(listModel);
             listView.render();
 
             expect(listElement.childElementCount).toEqual(0);
+        });
+
+        it("should display a text input and submit button on the page", function () {
+            expect(document.getElementById("create_note_btn").value).toEqual("Create note");
+            expect(document.getElementById("new_note_text").placeholder).toEqual("New note\u2026");
+        });
+
+        it("should allow the user to create a new note", function () {
+            var listView = new ListView(listModel);
+            listView.render();
+            var newNote;
+            var callbackFunction = function (newNoteData) {
+                newNote = newNoteData;
+            };
+            listView.registerNewNoteCallback(callbackFunction);
+
+            document.getElementById("new_note_text").value = 'New note';
+            document.getElementById("create_note_btn").click();
+
+            expect(newNote.noteText).toEqual('New note');
         });
     });
 })();
