@@ -12,7 +12,7 @@
         it("should display a given list with one note in the browser", function () {
             listModel.newNote("My first note");
             var listView = new ListView(listModel);
-            listView.displayList();
+            listView.render();
 
             expect(listElement.innerHTML).toEqual("<li>My first note</li>");
         });
@@ -22,7 +22,7 @@
             listModel.newNote("My second note");
             listModel.newNote("My third note");
             var listView = new ListView(listModel);
-            listView.displayList();
+            listView.render();
 
             expect(listElement.childElementCount).toEqual(3);
             expect(listElement.children[0].outerHTML).toEqual("<li>My first note</li>");
@@ -32,7 +32,7 @@
         
         it("should not display a given empty list in the browser", function () {
             var listView = new ListView(listModel);
-            listView.displayList();
+            listView.render();
 
             expect(listElement.childElementCount).toEqual(0);
         });

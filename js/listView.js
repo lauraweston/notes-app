@@ -18,7 +18,7 @@
         this.listModel = listModel;
     };
 
-    ListView.prototype.displayList = function () {
+    ListView.prototype.render = function () {
         var items = createListItems(this.listModel);
         appendItemsToList(items);
     };
