@@ -29,7 +29,3 @@
 
     exports.Controller = Controller;
 })(this);
-
-var rootElement = document.getElementById("root");
-var listModel = new ListModel();
-var controller = new Controller(rootElement, listModel, ListView, NoteView);

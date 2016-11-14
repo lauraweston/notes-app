@@ -36,7 +36,12 @@ var afterEach = function (callback) {
     after = callback;
 };
 
+var inTestMode = window.location.href.includes("test");
 var it = function (description, callback) {
+    if(!inTestMode) {
+        return;
+    }
+    
     console.log(description);
     try {
         if (typeof before === "function") {
