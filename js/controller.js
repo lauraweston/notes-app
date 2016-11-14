@@ -1,9 +1,9 @@
 (function (exports) {
-    var Controller = function (listModel, ListView, NoteView) {
+    var Controller = function (rootElement, listModel, ListView, NoteView) {
+        this.rootElement = rootElement;
         this.listModel = listModel;
         this.ListView = ListView;
         this.NoteView = NoteView;
-
     };
 
     Controller.prototype.showList = function () {
@@ -20,7 +20,7 @@
 
     Controller.prototype.renderView = function (View, model) {
         this.renderedView = new View(model);
-        this.renderedView.render();
+        this.renderedView.render(this.rootElement);
     };
 
     Controller.prototype.createNote = function (text) {
@@ -29,3 +29,7 @@
 
     exports.Controller = Controller;
 })(this);
+
+var rootElement = document.getElementById("root");
+var listModel = new ListModel();
+var controller = new Controller(rootElement, listModel, ListView, NoteView);

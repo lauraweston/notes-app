@@ -27,7 +27,8 @@
             listModel = new ListModel();
             listModel.newNote("Stuff to do");
 
-            controller = new Controller(listModel, ListViewDouble, NoteViewDouble);
+            var dummyRootElement = {};
+            controller = new Controller(dummyRootElement, listModel, ListViewDouble, NoteViewDouble);
         });
 
         it("displays a list in the browser from the Controller", function () {

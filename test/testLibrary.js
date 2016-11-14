@@ -31,6 +31,11 @@ var beforeEach = function (callback) {
     before = callback;
 };
 
+var after;
+var afterEach = function (callback) {
+    after = callback;
+};
+
 var it = function (description, callback) {
     console.log(description);
     try {
@@ -43,6 +48,9 @@ var it = function (description, callback) {
     } catch (e) {
         console.error("Failed: " + e.message);
         failing++;
+    }
+    if (typeof after === "function") {
+        after();
     }
     console.log(passing + " passing", failing + " failing");
 };

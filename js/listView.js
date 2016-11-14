@@ -8,10 +8,18 @@
     };
 
     var appendItemsToList = function (items) {
-        var list = document.getElementById("list");
+        var list = document.createElement("ul");
         items.forEach(function (item) {
             list.appendChild(item);
         });
+        return list;
+    };
+
+    var createNewNoteForm = function () {
+        var form = document.createElement('form');
+        form.innerHTML = `<textarea id="new_note_text" rows="3" cols="50" placeholder="New note&hellip;"></textarea><br/>
+                        <input id="create_note_btn" type="submit" value="Create note" />`;
+        return form;
     };
 
     var ListView = function (listModel) {
@@ -19,13 +27,19 @@
     };
 
 
-    ListView.prototype.render = function () {
+    ListView.prototype.render = function (rootElement) {
+        rootElement.innerHTML = "";
+
         var items = createListItems(this.model);
-        appendItemsToList(items);
+        var list = appendItemsToList(items);
+        var newNoteForm = createNewNoteForm();
+
+        rootElement.appendChild(newNoteForm);
+        rootElement.appendChild(list);
 
         var self = this;
-        
-        document.getElementById("create_note_btn").addEventListener("click", function (e) {
+
+        rootElement.querySelectorAll("#create_note_btn")[0].addEventListener("click", function (e) {
             e.preventDefault();
             var noteText = document.getElementById("new_note_text");
             if (typeof self.newNoteCallback === "function") {
