@@ -25,6 +25,7 @@
 
     Controller.prototype.createNote = function (text) {
         this.listModel.newNote(text);
+        this.showList();
     };
 
     exports.Controller = Controller;

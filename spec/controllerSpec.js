@@ -59,5 +59,17 @@
             expect(controller.listModel.notes.length).toEqual(2);
             expect(controller.listModel.notes[1].text).toEqual("I am a new note");
         });
+        it("shows an updated list after a note has been created", function() {
+            controller.showList();
+            var firstRenderedView = controller.renderedView;
+
+            controller.renderedView.triggerNewNoteCallback({ noteText: "I am a new note" });
+
+            expect(controller.renderedView.constructor).toEqual(ListViewDouble);
+            expect(controller.renderedView.model).toEqual(listModel);
+            expect(controller.renderedView.model.notes.length).toEqual(2);
+            expect(controller.renderedView.renderCalled).toBeTrue();
+            expect(controller.renderedView === firstRenderedView).toBeFalse();
+        });
     });
 })();
