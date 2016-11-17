@@ -4,6 +4,21 @@
         this.listModel = listModel;
         this.ListView = ListView;
         this.NoteView = NoteView;
+
+        var self = this;
+        window.addEventListener('hashchange', function(e) {
+            var hashLocation = e.newURL.indexOf("#");
+            if(hashLocation === -1){
+                self.showList();
+                return;
+            }
+            
+            var hash = e.newURL.slice(hashLocation);
+            if(hash.startsWith('#notes')) {
+                var noteId = parseInt(hash.slice(hash.indexOf('/') + 1));
+                self.showNote(noteId);
+            }
+        });
     };
 
     Controller.prototype.showList = function () {
@@ -14,8 +29,9 @@
         });
     };
 
-    Controller.prototype.showNote = function () {
-        this.renderView(this.NoteView, this.listModel.notes[0]);
+    Controller.prototype.showNote = function (id) {
+        var note = this.listModel.findNoteById(id);
+        this.renderView(this.NoteView, note);
     };
 
     Controller.prototype.renderView = function (View, model) {

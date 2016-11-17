@@ -12,5 +12,11 @@
         return this.notes;
     }
 
+    ListModel.prototype.findNoteById = function(id) {
+        return this.notes.find(function(note) {
+            return note.id === id;
+        });
+    }
+
     exports.ListModel = ListModel;
 })(this);
