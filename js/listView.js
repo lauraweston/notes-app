@@ -1,8 +1,12 @@
 (function (exports) {
     var createListItems = function (listModel) {
         return listModel.allNotes().map(function (note) {
+            var link = document.createElement("a");
+            link.setAttribute("href", `#notes/${note.id}`);
+            link.innerHTML = note.truncateText();
+
             var item = document.createElement("li");
-            item.innerHTML = note.truncateText();
+            item.appendChild(link);
             return item;
         });
     };

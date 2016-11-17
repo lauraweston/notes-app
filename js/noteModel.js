@@ -1,6 +1,7 @@
 (function (exports) {
-    var NoteModel = function (text) {
+    var NoteModel = function (text, id) {
         this.text = text;
+        this.id = id;
     }
 
     NoteModel.prototype.fullText = function () {

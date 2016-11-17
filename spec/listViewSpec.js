@@ -24,7 +24,7 @@
             listView.render(testElement);
 
             var listElement = getListElement();
-            expect(listElement.innerHTML).toEqual("<li>My first note</li>");
+            expect(listElement.innerHTML).toEqual('<li><a href="#notes/1">My first note</a></li>');
         });
 
         it("should display a given list with multiple notes in the browser", function () {
@@ -36,9 +36,9 @@
 
             var listElement = getListElement();
             expect(listElement.childElementCount).toEqual(3);
-            expect(listElement.children[0].outerHTML).toEqual("<li>My first note</li>");
-            expect(listElement.children[1].outerHTML).toEqual("<li>My second note</li>");
-            expect(listElement.children[2].outerHTML).toEqual("<li>My third note</li>");
+            expect(listElement.children[0].outerHTML).toEqual('<li><a href="#notes/1">My first note</a></li>');
+            expect(listElement.children[1].outerHTML).toEqual('<li><a href="#notes/2">My second note</a></li>');
+            expect(listElement.children[2].outerHTML).toEqual('<li><a href="#notes/3">My third note</a></li>');
         });
 
         it("should not display a given empty list in the browser", function () {
