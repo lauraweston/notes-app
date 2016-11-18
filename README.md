@@ -20,9 +20,10 @@ As a programmer
 I can see the full text of an individual note on its own page
 So I can see all the information in the note
 ```
+
 Installation
 ------------
-- ```git clone <github repo>```
+- ```git clone https://github.com/lauraweston/notes-app.git```
 - ```npm install```
 
 Usage
@@ -32,5 +33,6 @@ Usage
 
 Testing
 -------
-- The test library can be found in ```test/testLibrary.js```
-- Test messages will be printed in the browser console, when spec and test library scripts are included in index.html
+- Open index.html in browser with query string: ```index.html?test=true```
+- View test messages in the browser console  
+(The test library can be found in ```test/testLibrary.js```)
