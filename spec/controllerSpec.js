@@ -39,7 +39,7 @@
             expect(controller.renderedView.renderCalled).toBeTrue();
         });
         it("displays a note in the browser from the Controller", function () {
-            controller.showNote();
+            controller.showNote(1);
 
             expect(controller.renderedView.constructor).toEqual(NoteViewDouble);
             expect(controller.renderedView.model).toEqual(listModel.notes[0]);
