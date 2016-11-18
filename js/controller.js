@@ -1,24 +1,18 @@
 (function (exports) {
-    var Controller = function (rootElement, listModel, ListView, NoteView) {
+    var Controller = function (rootElement, listModel, ListView, NoteView, HashChangeListener) {
         this.rootElement = rootElement;
         this.listModel = listModel;
         this.ListView = ListView;
         this.NoteView = NoteView;
 
         var self = this;
-        window.addEventListener('hashchange', function(e) {
-            var hashLocation = e.newURL.indexOf("#");
-            if (hashLocation === -1) {
-                self.showList();
-                return;
-            }
-            
-            var hash = e.newURL.slice(hashLocation);
-            if (hash.startsWith('#notes')) {
-                var noteId = parseInt(hash.slice(hash.indexOf('/') + 1));
-                self.showNote(noteId);
-            }
-        });
+        var showListCallback = function () {
+            self.showList();
+        }
+        var showNoteCallback = function (id) {
+            self.showNote(id);
+        }
+        this.hashChangeListener = new HashChangeListener(showListCallback, showNoteCallback);
     };
 
     Controller.prototype.showList = function () {

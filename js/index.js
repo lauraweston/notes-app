@@ -7,7 +7,7 @@
 
     var rootElement = document.getElementById("root");
     var listModel = new ListModel();
-    var controller = new Controller(rootElement, listModel, ListView, NoteView);
+    var controller = new Controller(rootElement, listModel, ListView, NoteView, HashChangeListener);
     // todo: pick this up from hash on initial load
     controller.showList();
 })();

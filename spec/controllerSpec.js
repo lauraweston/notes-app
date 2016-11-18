@@ -20,6 +20,16 @@
             this.renderCalled = false;
         };
 
+        var HashChangeListenerDouble = function(showListCallback, showNoteCallback) {
+            this.triggerShowListCallback = function() {
+                showListCallback();
+            }
+
+            this.triggerShowNoteCallback = function(id) {
+                showNoteCallback(id);
+            }
+        };
+
         var listModel;
         var controller;
 
@@ -28,7 +38,7 @@
             listModel.newNote("Stuff to do");
 
             var dummyRootElement = {};
-            controller = new Controller(dummyRootElement, listModel, ListViewDouble, NoteViewDouble);
+            controller = new Controller(dummyRootElement, listModel, ListViewDouble, NoteViewDouble, HashChangeListenerDouble);
         });
 
         it("displays a list in the browser from the Controller", function () {
@@ -70,6 +80,23 @@
             expect(controller.renderedView.model.notes.length).toEqual(2);
             expect(controller.renderedView.renderCalled).toBeTrue();
             expect(controller.renderedView === firstRenderedView).toBeFalse();
+        });
+
+        it("should show list when the hash change callback is called", function() {
+
+            controller.hashChangeListener.triggerShowListCallback();
+
+            expect(controller.renderedView.constructor).toEqual(ListViewDouble);
+        });
+
+        it("should show note when the hash change show note callback is called", function() {
+
+            listModel.newNote('Note 2');
+
+            controller.hashChangeListener.triggerShowNoteCallback(2);
+
+            expect(controller.renderedView.constructor).toEqual(NoteViewDouble);
+            expect(controller.renderedView.model.id).toEqual(2);
         });
     });
 })();
